@@ -44,7 +44,6 @@ int halfHeapSort(std::vector<int>& nums,int& duration){
     for(int i = nums.size() ; i > nums.size()/2; --i){
         std::swap(nums[0], nums[i]);
         percDown(nums,0);
-        nums.erase(nums.begin());
     }
     auto stop = high_resolution_clock::now();
     auto length = duration_cast<milliseconds>(stop-start);
