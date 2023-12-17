@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <chrono>
-
+using namespace std::chrono;
 /**
  * @post:Recursise part of merge sort that splits the array into smaller arrays and then merges them to sort the data
  * @param nums: The vector that stores the integers to be sorted
@@ -38,16 +38,19 @@ void recursive_merge_sort(std::vector<int>& nums,std::vector<int>::iterator begi
  * @returns the median of the sorted vector
  */
 
-int mergeSort ( std::vector<int>& nums, int& duration ){
-    auto start = std::chrono::high_resolution_clock::now();
+int mergeSort(std::vector<int>& nums, int& duration){
+    auto start = high_resolution_clock::now();
     std::vector<int>::iterator begin = nums.begin();
     std::vector<int>::iterator end = nums.end();
     std::vector<int> result(nums.size());
     recursive_merge_sort(nums,begin,end-1);
-    auto stop = std::chrono::high_resolution_clock::now();
+    auto stop = high_resolution_clock::now();
     std::vector<int>::iterator output = begin + nums.size()/2;
-    auto length = std::chrono::duration_cast<milliseconds>(stop-start);
+    auto length = duration_cast<milliseconds>(stop-start);
     duration = length.count();
+    if(nums.size()%2 == 0){
+        output--;
+    }
     return *output;
 }
 

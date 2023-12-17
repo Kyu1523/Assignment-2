@@ -13,8 +13,8 @@ int standardSort(std::vector<int>& nums, int& duration ){
     auto length = duration_cast<milliseconds>(stop-start);
     duration = length.count();
     std::vector<int>::iterator mid = begin + (end-begin)/2;
-    if(nums.size() % 2 == 1){
-        mid++;
+    if(nums.size()%2 == 0){
+        mid--;
     }
     return *mid;
 }

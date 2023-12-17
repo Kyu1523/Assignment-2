@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <chrono>
+
 using namespace std::chrono;
 /**
  * @post:Recursise part of merge sort that splits the array into smaller arrays and then merges them to sort the data
@@ -34,6 +35,9 @@ int inPlaceMergeSort (std::vector<int>& nums, int& duration ){
     std::vector<int>::iterator result = begin + nums.size()/2;
     auto length = duration_cast<milliseconds>(stop-start);
     duration = length.count();
+    if(nums.size()%2 == 0){
+        result--;
+    }
     return *result;
 }
 
