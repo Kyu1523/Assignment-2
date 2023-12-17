@@ -10,9 +10,9 @@ int halfSelectionSort ( std::vector<int>& nums, int& duration ){
     std::vector<int>::iterator begin = nums.begin();
     std::vector<int>::iterator end = nums.end()-1;
     std::vector<int>::iterator mid = begin + (end - begin)/2;
-    for(begin; begin < end;begin++){
+    for(begin; begin <= end;begin++){
         std::vector<int>::iterator smallest = begin;
-        for(std::vector<int>::iterator index = begin; index < end; index++){
+        for(std::vector<int>::iterator index = begin; index <= end; index++){
             if(*index < *smallest){
                 smallest = index;
             }
@@ -22,5 +22,8 @@ int halfSelectionSort ( std::vector<int>& nums, int& duration ){
     auto stop = high_resolution_clock::now();
     auto length = duration_cast<milliseconds>(stop-start);
     duration = length.count();
+    if(nums.size()%2 == 1){
+        mid++;
+    }
     return *mid;
 }
