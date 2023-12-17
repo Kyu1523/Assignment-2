@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
-
+using namespace std::chrono;
 /**
  * @post: Fills in the specified hole in the heap
  * @param: A reference to the heap
@@ -42,7 +42,7 @@ void buildHeap (std::vector<int>& heap){
 }
 
 int halfHeapSort(std::vector<int>& nums,int& duration){
-    auto start = std::chrono::high_resolution_clock::now();
+    auto start = high_resolution_clock::now();
     nums.push_back(std::move(nums[0]));
     buildHeap(nums);
     for(int i = nums.size() -1 ; i > 0; --i){
@@ -51,8 +51,8 @@ int halfHeapSort(std::vector<int>& nums,int& duration){
         nums.erase(nums.begin());
     }
     nums.pop_back();
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto length = std::chrono::duration_cast<milliseconds>(stop-start);
+    auto stop = high_resolution_clock::now();
+    auto length = duration_cast<milliseconds>(stop-start);
     duration = length.count();
     return nums[nums.size()/2];
 }

@@ -3,14 +3,18 @@
 #include <algorithm>
 #include <iterator>
 #include <chrono>
-
-int standardSort ( std::vector<int>& nums, int& duration ){
-    auto start = std::chrono::high_resolution_clock::now();
+using namespace std::chrono;
+int standardSort(std::vector<int>& nums, int& duration ){
+    auto start = high_resolution_clock::now();
     std::vector<int>::iterator begin = nums.begin();
     std::vector<int>::iterator end = nums.end();
     std::sort(begin,end);
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto length = std::chrono::duration_cast<milliseconds>(stop-start);
+    auto stop = high_resolution_clock::now();
+    auto length = duration_cast<milliseconds>(stop-start);
     duration = length.count();
-    return *(begin + (end-begin)/2);
+    std::vector<int>::iterator mid = begin + (end-begin)/2;
+    if(nums.size() % 2 == 1){
+        mid++;
+    }
+    return *mid;
 }
