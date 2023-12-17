@@ -12,5 +12,5 @@ int standardSort ( std::vector<int>& nums, int& duration ){
     auto stop = std::chrono::high_resolution_clock::now();
     auto length = std::chrono::duration_cast<milliseconds>(stop-start);
     duration = length.count();
-    return *end;
+    return *(begin + (end-begin)/2);
 }
