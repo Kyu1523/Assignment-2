@@ -32,7 +32,7 @@ void percDown(std::vector<int>& heap, std::vector<int>::size_type hole){
  * @param:The heap
  */
 void buildHeap (std::vector<int>& heap){
-    for(int i = heap.size()/2 - 1; i >= 0; --i){
+    for(int i = heap.size( )/2 - 1; i >= 0; --i ){ 
         percDown(heap,i);
     }
 }
@@ -41,12 +41,14 @@ int halfHeapSort(std::vector<int>& nums,int& duration){
     auto start = high_resolution_clock::now();
     nums.push_back(std::move(nums[0]));
     buildHeap(nums);
-    for(int i = nums.size() ; i > nums.size()/2; --i){
+    int size = (nums.size()-1)/2;
+    for(int i = nums.size()-1 ; i > size; --i){
         std::swap(nums[0], nums[i]);
         percDown(nums,0);
+        nums.erase(nums.begin()+1);
     }
     auto stop = high_resolution_clock::now();
     auto length = duration_cast<milliseconds>(stop-start);
     duration = length.count();
-    return nums[nums.size()/2];
+    return nums[1];
 }
