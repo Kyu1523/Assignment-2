@@ -9,11 +9,11 @@ using namespace std::chrono;
  */
 void percDown(std::vector<int>& heap, std::vector<int>::size_type hole){
     int child;
-    int temp;
-    int size = heap.size();
-    for(temp = std::move(heap[hole]); 2*hole < size; hole = child){
+    int temp = std::move(heap[hole]);
+    int size = heap.size()-1;
+    for(; 2*hole <= size; hole = child){
         child = 2 * hole;
-        if(child != size-1 && heap[child] > heap[child+1]){
+        if(child != size && heap[child] > heap[child+1]){
             ++child;
         }
         if(temp > heap[child]){
@@ -40,13 +40,13 @@ int halfHeapSort(std::vector<int>& nums,int& duration){
     auto start = high_resolution_clock::now();
     nums.push_back(std::move(nums[0]));
     buildHeap(nums);
-    int size = (nums.size()-1)/2;
-    if(nums.size()%2 == 1){
-        size--;
+    int size = nums.size()/2;
+    if(nums.size()% 2 == 1){
+        size++;
     }
-    for(int i = 1 ; i < size; ++i){
-        nums.erase(nums.begin()+1);
-        std::swap(nums[0], nums[i]);
+    for(int i = nums.size()-1; i > size; i--){
+        std::swap(nums[1],nums[i]);
+        nums.erase(nums.begin()+i);
         percDown(nums,1);
     }
     auto stop = high_resolution_clock::now();
