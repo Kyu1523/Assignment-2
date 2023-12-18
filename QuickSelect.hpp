@@ -68,13 +68,13 @@ std::vector<int>::iterator hoarePartition ( std::vector<int>& nums, std::vector<
  * @param end : End iterator of the range to partition
  */
 void recursive_quick_select(std::vector<int>& nums, std::vector<int>::iterator begin, std::vector<int>::iterator end){
-    if(end - begin <= 10){
+    if(end+1 - begin <= 10){
         std::sort(begin,end);
         return;
     }
     std::vector<int>::iterator pivot = choosePivot(begin,end);
-    iter_swap(pivot,end);
-    pivot = hoarePartition(nums,begin,end);
+    iter_swap(pivot,end);                               //places pivot into the end for hoarePartition
+    pivot = hoarePartition(nums,begin,end);             //places pivot back into pivot iterator
     std::vector<int>::iterator mid = nums.begin() + nums.size()/2;
     if(pivot < mid){                                //if pivot is less than midpoint, then median is on the right of pivot
         recursive_quick_select(nums,pivot+1,end);
