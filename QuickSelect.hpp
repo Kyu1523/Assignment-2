@@ -41,7 +41,8 @@ std::vector<int>::iterator choosePivot(std::vector<int>::iterator begin, std::ve
  */
 std::vector<int>::iterator hoarePartition ( std::vector<int>& nums, std::vector<int>::iterator low, std::vector<int>::iterator high ){
     std::vector<int>::iterator pivot = high;
-    while(low < high){
+    high--;
+    while(low <= high){
         if(*low <= *pivot){
             low++;
         }
@@ -54,6 +55,7 @@ std::vector<int>::iterator hoarePartition ( std::vector<int>& nums, std::vector<
             high--;
         }
     }
+    iter_swap(low,pivot);
     return low;
 }
 
