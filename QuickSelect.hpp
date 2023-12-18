@@ -70,7 +70,6 @@ std::vector<int>::iterator hoarePartition ( std::vector<int>& nums, std::vector<
 void recursive_quick_select(std::vector<int>& nums, std::vector<int>::iterator begin, std::vector<int>::iterator end){
     if(end+1 - begin <= 10){
         std::sort(begin,end);
-        return;
     }
     std::vector<int>::iterator pivot = choosePivot(begin,end);
     iter_swap(pivot,end);                               //places pivot into the end for hoarePartition
