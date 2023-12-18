@@ -70,6 +70,7 @@ std::vector<int>::iterator hoarePartition ( std::vector<int>& nums, std::vector<
 void recursive_quick_select(std::vector<int>& nums, std::vector<int>::iterator begin, std::vector<int>::iterator end){
     if(end - begin <= 10){
         std::sort(begin,end);
+        return;
     }
     std::vector<int>::iterator pivot = choosePivot(begin,end);
     iter_swap(pivot,end);
@@ -86,6 +87,12 @@ void recursive_quick_select(std::vector<int>& nums, std::vector<int>::iterator b
     }
 }
 
+/**
+ * @brief QuickSelect function
+ * @param nums : Vector that we want the median from
+ * @param duration : A int to store the duration of the algorithm
+ * @return : The median of nums
+ */
 int quickSelect ( std::vector<int>& nums, int& duration ){
     auto start = high_resolution_clock::now();
     recursive_quick_select(nums,nums.begin(),nums.end()-1);
