@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <chrono>
-
+using namespace std::chrono;
 /**
  * @brief: Chooses the pivot as the median of the beginning element, middle element or end element
  * 
@@ -77,11 +77,10 @@ void recursive_quick_select(std::vector<int>& nums, std::vector<int>::iterator b
 }
 
 int quickSelect ( std::vector<int>& nums, int& duration ){
-    auto start = std::chrono::high_resolution_clock::now();
+    auto start = high_resolution_clock::now();
     recursive_quick_select(nums,nums.begin(),nums.end()-1);
-
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto length = std::chrono::duration_cast<milliseconds>(stop-start);
+    auto stop = high_resolution_clock::now();
+    auto length = duration_cast<milliseconds>(stop-start);
     duration = length.count();
     int mid = nums.size()/2;
     if(nums.size()%2 == 0){
