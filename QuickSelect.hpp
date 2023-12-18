@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <chrono>
 using namespace std::chrono;
+
 /**
  * @brief: Chooses the pivot as the median of the beginning element, middle element or end element
  * 
@@ -43,7 +44,7 @@ std::vector<int>::iterator hoarePartition ( std::vector<int>& nums, std::vector<
     std::vector<int>::iterator pivot = high;
     high--;                 //to not include the pivot
     while(low <= high){
-        if(*low <= *pivot){
+        if(*low < *pivot){
             low++;
         }
         else if(*high > *pivot){
