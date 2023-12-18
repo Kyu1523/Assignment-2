@@ -41,7 +41,7 @@ std::vector<int>::iterator choosePivot(std::vector<int>::iterator begin, std::ve
  */
 std::vector<int>::iterator hoarePartition ( std::vector<int>& nums, std::vector<int>::iterator low, std::vector<int>::iterator high ){
     std::vector<int>::iterator pivot = high;
-    high--;
+    high--;                 //to not include the pivot
     while(low <= high){
         if(*low <= *pivot){
             low++;
@@ -55,10 +55,17 @@ std::vector<int>::iterator hoarePartition ( std::vector<int>& nums, std::vector<
             high--;
         }
     }
-    iter_swap(low,pivot);
+    iter_swap(low,pivot);       //swap pivot into place
     return low;
 }
 
+
+/**
+ * @post: Will recursively run quickselect until median is found
+ * @param nums : The vector that stores the data
+ * @param begin : Beginning iterator of the range to partition
+ * @param end : End iterator of the range to partition
+ */
 void recursive_quick_select(std::vector<int>& nums, std::vector<int>::iterator begin, std::vector<int>::iterator end){
     if(end - begin <= 10){
         std::sort(begin,end);
@@ -67,14 +74,14 @@ void recursive_quick_select(std::vector<int>& nums, std::vector<int>::iterator b
     iter_swap(pivot,end);
     pivot = hoarePartition(nums,begin,end);
     std::vector<int>::iterator mid = nums.begin() + nums.size()/2;
-    if(pivot < mid){
+    if(pivot < mid){                                //if pivot is less than midpoint, then median is on the right of pivot
         recursive_quick_select(nums,pivot+1,end);
     }
-    else if(pivot > mid){
+    else if(pivot > mid){                           //if pivot is greater than midpoint, then median is on the left of pivot
         recursive_quick_select(nums,begin,pivot-1);
     }
     else{
-        return;
+        return;                                     //median is found
     }
 }
 
