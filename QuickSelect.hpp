@@ -84,7 +84,7 @@ int quickSelect ( std::vector<int>& nums, int& duration ){
     auto length = std::chrono::duration_cast<milliseconds>(stop-start);
     duration = length.count();
     int mid = nums.size()/2;
-    if(nums.size()%2 == 1){
+    if(nums.size()%2 == 0){
         mid--;
     }
     return nums[mid];
